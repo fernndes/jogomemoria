@@ -15,11 +15,8 @@ function App() {
   const classes = useStyles();
   const [diff, setDiff] = useState(1)
 
-  useEffect(() => {
-    resetCardsOpacity()
-  }, [level])
-
   function level(value) {
+    resetCardsOpacity()
     setDiff(value)
     return `${value}`;
   }
