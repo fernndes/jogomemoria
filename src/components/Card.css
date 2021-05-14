@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: #7fffd4;
+    max-height: 200px;
+}
+
+.card-container h2 {
+    font-size: 3rem;
+}
