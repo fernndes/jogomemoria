@@ -38,7 +38,7 @@ function Home({ level }) {
             }
             previous.current = null
         }
-    }, [selected])
+    }, [selected, previousSelected])
 
     useEffect(() => {
         setSelected(null)
@@ -64,7 +64,7 @@ function Home({ level }) {
             if (alert('Parabéns você conseguiu!')) { }
             else window.location.reload();
         }
-    }, [count])
+    }, [count, level])
 
     function memoryCards(number) {
         return {
