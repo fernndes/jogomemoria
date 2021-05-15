@@ -9,7 +9,7 @@ function Card({ number, id, setSelected, level }) {
     }
 
     return (
-        <div id={id} className="card-container" onClick={() => showComponent()}>
+        <div id={id} className="card-container" style={{ transformStyle: 'preserve-3d' }} onClick={() => showComponent()}>
             <div className="back">
                 <h2 id={`${id}-text`} >{number}</h2>
             </div>
