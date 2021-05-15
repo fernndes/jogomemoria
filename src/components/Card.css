@@ -9,9 +9,11 @@
     border-radius: .25rem;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
     transition: 150ms;
-    transform: perspective(1000px) rotateY(var(--rotate-y, 0));
-    -webkit-transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+    transform: rotateY(var(--rotate-y, 0));
+    -webkit-transform: rotateY(var(--rotate-y, 0));
+    -ms-transform: rotateY(var(--rotate-y, 0));
     cursor: pointer;
 }
 
@@ -26,6 +28,7 @@
 
 .card-container .back {
     -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
