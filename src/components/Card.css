@@ -11,6 +11,8 @@
     -webkit-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transition: 150ms;
+    -webkit-transition: 150ms;
+    -ms-transition: 150ms;
     transform: rotateY(var(--rotate-y, 0));
     -webkit-transform: rotateY(var(--rotate-y, 0));
     -ms-transform: rotateY(var(--rotate-y, 0));
