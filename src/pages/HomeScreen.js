@@ -16,24 +16,24 @@ function Home({ level }) {
 
     useEffect(() => {
         if (!previousSelected && !selected) return
-        let component2 = document.getElementById(`${selected.id}-text`)
         let component22 = document.getElementById(`${selected.id}`)
-        component2.style.opacity = 1
+        component22.className += ' flip'
         if (!previousSelected && !!selected) return
-        let component1 = document.getElementById(`${previousSelected.id}-text`)
         let component11 = document.getElementById(`${previousSelected.id}`)
-        component1.style.opacity = 1
+        component11.className += ' flip'
         if (previousSelected.id !== selected.id && previousSelected.number === selected.number) {
             component11.setAttribute('onclick', 'alert("Combinação já encontrada")')
             component22.setAttribute('onclick', 'alert("Combinação já encontrada")')
             setSelected(null)
             previous.current = null
             setCount(value => value + 1)
+            component11.className += ' found'
+            component22.className += ' found'
         } else {
             if (!!previousSelected && !!selected) {
                 setTimeout(() => {
-                    component1.style.opacity = 0
-                    component2.style.opacity = 0
+                    component22.className = 'card-container'
+                    component11.className = 'card-container'
                 }, 1000)
             }
             previous.current = null

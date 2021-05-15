@@ -5,8 +5,33 @@
     margin: 10px;
     background-color: #7fffd4;
     max-height: 200px;
+    position: relative;
+    border-radius: .25rem;
+    transform-style: preserve-3d;
+    transition: 150ms;
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+    cursor: pointer;
+}
+
+.flip {
+    --rotate-y: 180deg;
+}
+
+.card-container .front,
+.card-container .back {
+    position: absolute;
+}
+
+.card-container .back {
+    transform: rotateY(180deg);
 }
 
 .card-container h2 {
     font-size: 3rem;
+}
+
+.found {
+    background: ghostwhite;
+    border: 1px solid #7fffd4;
+    color: forestgreen;
 }

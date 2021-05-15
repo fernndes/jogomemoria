@@ -22,12 +22,9 @@ function App() {
   }
 
   function resetCardsOpacity() {
-    let cards = document.getElementsByClassName("guessNumber")
     let containers = document.getElementsByClassName("card-container")
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].style.opacity = 0
-    }
     for (let j = 0; j < containers.length; j++) {
+      containers[j].className = 'card-container'
       containers[j].setAttribute('onclick', '() => showComponent()')
     }
   }
