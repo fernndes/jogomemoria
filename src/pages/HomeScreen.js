@@ -3,10 +3,11 @@ import React, { useEffect, useState, useRef } from 'react'
 import Card from '../components/Card'
 import './HomeScreen.css'
 
-function Home({ level }) {
+function Home({ level, setCurrLevel }) {
     const [cards, setCards] = useState([])
     const [selected, setSelected] = useState(null)
-    const [count, setCount] = useState(0)
+    const [found, setFound] = useState([])
+
     let previous = useRef()
 
     useEffect(() => {
@@ -22,11 +23,11 @@ function Home({ level }) {
         let component11 = document.getElementById(`${previousSelected.id}`)
         component11.className += ' flip'
         if (previousSelected.id !== selected.id && previousSelected.number === selected.number) {
+            setFound(value => [...value, selected, previousSelected])
+            setSelected(null)
             component11.setAttribute('onclick', 'alert("Combinação já encontrada")')
             component22.setAttribute('onclick', 'alert("Combinação já encontrada")')
-            setSelected(null)
             previous.current = null
-            setCount(value => value + 1)
             component11.className += ' found'
             component22.className += ' found'
         } else {
@@ -38,6 +39,7 @@ function Home({ level }) {
             }
             previous.current = null
         }
+        checkEndGame()
     }, [selected, previousSelected])
 
     useEffect(() => {
@@ -57,14 +59,25 @@ function Home({ level }) {
         }
         shuffleArray(newCards)
         setCards(newCards)
+        setFound([])
     }, [level])
 
-    useEffect(() => {
-        if (count === level) {
-            if (alert('Parabéns você conseguiu!')) { }
-            else window.location.reload();
+    function checkEndGame() {
+        let pending = true
+        for (let h = 0; h < level; h++) {
+            let notFound = found.filter(elem => elem.number === h)
+            if (notFound.length === 0) {
+                pending = true
+            } else {
+                pending = false
+            }
         }
-    }, [count, level])
+        if (!pending) {
+            document.getElementById('animation').style.display = 'flex'
+            setCurrLevel(value => value === 10 ? 2 : value + 2)
+            setFound([])
+        }
+    }
 
     function memoryCards(number) {
         return {
@@ -72,11 +85,23 @@ function Home({ level }) {
         }
     }
 
+    function resize() {
+        if (window.innerWidth > 400) {
+            return `repeat(${level / (level / 4)}, 1fr)`
+        } else if (level > 4) {
+            return `repeat(${level / (level / 4)}, 1fr)`
+        } else {
+            return `repeat(${0.5 * level / (level / 4)}, 1fr)`
+        }
+    }
+
     return (
         <div
             id="container"
             className="container"
-            style={{ gridTemplateColumns: `repeat(${level / (level / 4)}, 1fr)` }}
+            style={{
+                gridTemplateColumns: resize()
+            }}
         >
             {cards.map((item, idx) => (
                 <Card key={idx} id={idx} number={item.number} level={level} setSelected={setSelected} />

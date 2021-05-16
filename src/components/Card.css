@@ -2,10 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px;
-    background-color: #7fffd4;
-    max-height: 200px;
-    position: relative;
+    height: 100%;
     border-radius: .25rem;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
@@ -20,12 +17,21 @@
     -ms-transform: rotateY(var(--rotate-y, 0));
     -moz-transform: rotateY(var(--rotate-y, 0));
     cursor: pointer;
+    background: #3effbf;
     color: transparent;
+    position: relative;
 }
 
 .flip {
-    color: #000;
     --rotate-y: 180deg;
+    color: #000;
+}
+
+.card-container:hover {
+    transform: rotateY(var(--rotate-y, 0)) translateY(-5px);
+    -webkit-transform: rotateY(var(--rotate-y, 0)) translateY(-5px);
+    -ms-transform: rotateY(var(--rotate-y, 0)) translateY(-5px);
+    -moz-transform: rotateY(var(--rotate-y, 0)) translateY(-5px);
 }
 
 .card-container .front,
@@ -34,10 +40,10 @@
 }
 
 .card-container .back {
+    transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
-    transform: rotateY(180deg);
 }
 
 .card-container h2 {
