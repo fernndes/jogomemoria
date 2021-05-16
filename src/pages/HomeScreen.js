@@ -39,7 +39,6 @@ function Home({ level, setCurrLevel }) {
             }
             previous.current = null
         }
-        checkEndGame()
     }, [selected, previousSelected])
 
     useEffect(() => {
@@ -62,7 +61,7 @@ function Home({ level, setCurrLevel }) {
         setFound([])
     }, [level])
 
-    function checkEndGame() {
+    useEffect(() => {
         let pending = true
         for (let h = 0; h < level; h++) {
             let notFound = found.filter(elem => elem.number === h)
@@ -73,11 +72,11 @@ function Home({ level, setCurrLevel }) {
             }
         }
         if (!pending) {
+            setFound([])
             document.getElementById('animation').style.display = 'flex'
             setCurrLevel(value => value === 10 ? 2 : value + 2)
-            setFound([])
         }
-    }
+    }, [found, level, setCurrLevel])
 
     function memoryCards(number) {
         return {
