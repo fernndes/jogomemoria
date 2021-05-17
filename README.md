@@ -1,3 +1,10 @@
+## Jogo da memória
+
+Jogo da memória simples com ReactJS e Hooks
+
+Observação: o projeto está em fase de refatoração, portanto o mudanças ocorrerão. O intuito inicial foi fazer o projeto funcionar.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
