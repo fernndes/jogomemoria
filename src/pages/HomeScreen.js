@@ -43,7 +43,6 @@ function Home({ level, setCurrLevel }) {
 
     useEffect(() => {
         if (found.length / 2 === level) {
-            console.log('Entrou')
             setFound([])
             document.getElementById('animation').style.display = 'flex'
             setCurrLevel(value => value === 10 ? 2 : value + 2)
