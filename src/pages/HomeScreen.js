@@ -16,24 +16,6 @@ function Home({ level, setCurrLevel }) {
     let previousSelected = previous.current
 
     useEffect(() => {
-        console.log(found)
-        let pending = true
-        for (let h = 0; h < level; h++) {
-            let notFound = found.filter(elem => elem.number === h)
-            if (notFound.length === 0) {
-                pending = true
-            } else {
-                pending = false
-            }
-        }
-        if (!pending) {
-            setFound([])
-            document.getElementById('animation').style.display = 'flex'
-            setCurrLevel(value => value === 10 ? 2 : value + 2)
-        }
-    }, [found, level, setCurrLevel])
-
-    useEffect(() => {
         if (!previousSelected && !selected) return
         let component22 = document.getElementById(`${selected.id}`)
         component22.className += ' flip'
@@ -57,9 +39,19 @@ function Home({ level, setCurrLevel }) {
             }
             previous.current = null
         }
-    }, [selected, previousSelected])
+    }, [selected, previousSelected, found, level, setCurrLevel])
 
     useEffect(() => {
+        if (found.length / 2 === level) {
+            console.log('Entrou')
+            setFound([])
+            document.getElementById('animation').style.display = 'flex'
+            setCurrLevel(value => value === 10 ? 2 : value + 2)
+        }
+    }, [found, level, setCurrLevel])
+
+    useEffect(() => {
+        setFound([])
         setSelected(null)
         previous.current = null
         let newCards = []
@@ -76,7 +68,6 @@ function Home({ level, setCurrLevel }) {
         }
         shuffleArray(newCards)
         setCards(newCards)
-        setFound([])
     }, [level])
 
 
